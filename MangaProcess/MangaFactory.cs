@@ -240,19 +240,6 @@ namespace MangaSplitter.MangaProcess
                 link = nextPageURL;
             }
 
-            /*
-            foreach (KeyValuePair<String, MangaChapter> chapter in currManga.chapters)
-            {
-                foreach (List<MangaPage> pages in chapter.Value.pages.Values)
-                {
-                    foreach (MangaPage page in pages)
-                    {
-                        Console.WriteLine("Chapter: " + page.chapterURL + " with source: " + page.imgSrc);
-                    }
-                }
-            }
-             */
-
             //Create folder in temp
             string tempPath = Path.GetTempPath();
             if (String.IsNullOrEmpty(tempPath))
@@ -315,35 +302,9 @@ namespace MangaSplitter.MangaProcess
 
         private void test(HtmlDocument currentDoc, string inputLink) 
         {
-            /*
-            string nextPageURL = getURLFromKey(currentDoc.DocumentNode, new Queue<KeyValuePair<string, int>>(nextPageKey), "href", inputLink);
-            string chapterPageURL = getURLFromKey(currentDoc.DocumentNode, new Queue<KeyValuePair<string, int>>(chapterPageKey), "href", inputLink);
-            string imageSrcURL = getURLFromKey(currentDoc.DocumentNode, new Queue<KeyValuePair<string, int>>(imgPageKey), "content", inputLink);
-            */
             string nextChapterURL = getURL(getElementFromKey(currentDoc.DocumentNode, new Queue<KeyValuePair<string, int>>(nextChapterPageKey), "href"), inputLink);
 
-            /*
-            Console.WriteLine("Current Page: " + inputLink + System.Environment.NewLine);
-            Console.WriteLine("Next Page: " + nextPageURL + System.Environment.NewLine);
-            Console.WriteLine("Chapter Page: " + chapterPageURL + System.Environment.NewLine);
-            //Console.WriteLine("Home Page: " + homePageURL + System.Environment.NewLine);
-            Console.WriteLine("Image Page: " + imageSrcURL + System.Environment.NewLine);
-            */
             Console.WriteLine("Next Chapter Page: " + nextChapterURL + System.Environment.NewLine);
         }
-        /*
-        private string ReadPage(string Link)
-        {
-            using (var client = new WebClient())
-            {
-                this.wbrwPages.Navigate(Link);
-                while (this.wbrwPages.ReadyState != WebBrowserReadyState.Complete)
-                {
-                    Application.DoEvents();
-                }
-                ReadPage = this.wbrwPages.DocumentText;
-            }
-        }
-         * */
     }
 }
